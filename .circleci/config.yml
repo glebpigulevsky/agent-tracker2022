@@ -4,7 +4,7 @@ executors:
       - image: cypress/base:12
         environment:
           TERM: xterm
-    working_directory: ~/agent-tracker
+    working_directory: ~/agent-tracker2021
 
 commands:
   restore_yarn_install:
@@ -78,9 +78,9 @@ workflows:
   main:
     jobs:
       - checkout_code
-      - test_and_ts_check:
-          requires:
-            - checkout_code
+      # - test_and_ts_check:
+      #     requires:
+      #       - checkout_code
       - build:
           name: build_agent_tracker
           requires:
