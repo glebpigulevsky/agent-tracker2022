@@ -68,8 +68,7 @@ jobs:
     executor: cypress
     steps:
       - checkout
-      - attach_workspace:
-          at: ~/agent-tracker2022
+      - heroku/install
       - heroku/deploy-via-git
 
 
