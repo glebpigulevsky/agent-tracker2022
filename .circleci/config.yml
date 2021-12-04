@@ -88,6 +88,6 @@ workflows:
       - heroku_deploy:
           requires:
             - build
-            filters:
-              branches:
-                only: FE-3
+          filters:
+            branches:
+              only: FE-3
