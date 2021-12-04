@@ -77,9 +77,9 @@ workflows:
   main:
     jobs:
       - checkout_code
-      # - test_and_ts_check:
-      #     requires:
-      #       - checkout_code
+      - test_and_ts_check:
+          requires:
+            - checkout_code
       - build:
           name: build_agent_tracker
           requires:
@@ -89,4 +89,4 @@ workflows:
             - build_agent_tracker
           filters:
             branches:
-              only: FE-3
+              only: master
