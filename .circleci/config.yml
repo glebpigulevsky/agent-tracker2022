@@ -63,7 +63,7 @@ jobs:
           key: agent-tracker
           paths:
             - ./build
-  deploy-job:
+  heroku_deploy:
     working_directory: ~/agent-tracker
     executor: cypress
     steps:
