@@ -25,6 +25,8 @@ commands:
 
 orbs:
   node: circleci/node@3.0.0
+  heroku: circleci/heroku@1.2.6
+
 
 version: 2.1
 jobs:
@@ -74,3 +76,6 @@ workflows:
           name: build_agent_tracker
           requires:
             - checkout_code
+  heroku_deploy:
+    jobs:
+      - heroku/deploy-via-git
