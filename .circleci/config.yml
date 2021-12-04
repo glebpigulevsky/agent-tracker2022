@@ -4,7 +4,7 @@ executors:
       - image: cypress/base:12
         environment:
           TERM: xterm
-    working_directory: ~/agent-tracker2021
+    working_directory: ~/agent-tracker2022
 
 commands:
   restore_yarn_install:
@@ -57,19 +57,19 @@ jobs:
       - checkout
       - restore_yarn_install
       - run:
-          name: Build agent-tracker2021
+          name: Build agent-tracker2022
           command: yarn build
       - save_cache:
-          key: agent-tracker2021
+          key: agent-tracker2022
           paths:
             - ./build
   heroku_deploy:
-    working_directory: ~/agent-tracker2021
+    working_directory: ~/agent-tracker2022
     executor: cypress
     steps:
       - checkout
       - attach_workspace:
-          at: ~/agent-tracker2021
+          at: ~/agent-tracker2022
       - heroku/deploy-via-git
 
 
