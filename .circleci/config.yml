@@ -4,7 +4,7 @@ executors:
       - image: cypress/base:12
         environment:
           TERM: xterm
-    working_directory: ~/agent-tracker2021
+    working_directory: ~/agent-tracker
 
 commands:
   restore_yarn_install:
