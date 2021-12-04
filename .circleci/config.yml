@@ -87,7 +87,7 @@ workflows:
             - checkout_code
       - heroku_deploy:
           requires:
-            - build
+            - build_agent_tracker
           filters:
             branches:
               only: FE-3
