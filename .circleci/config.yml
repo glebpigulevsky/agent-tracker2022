@@ -63,6 +63,15 @@ jobs:
           key: agent-tracker
           paths:
             - ./build
+  deploy-job:
+    working_directory: ~/agent-tracker
+    executor: cypress
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/agent-tracker
+      - heroku/deploy-via-git
+
 
 workflows:
   version: 2
@@ -76,6 +85,9 @@ workflows:
           name: build_agent_tracker
           requires:
             - checkout_code
-  heroku_deploy:
-    jobs:
-      - heroku/deploy-via-git
+      - heroku_deploy:
+          requires:
+            - build
+            filters:
+              branches:
+                only: FE-3
