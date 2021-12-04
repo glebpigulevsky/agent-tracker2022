@@ -4,7 +4,7 @@ executors:
       - image: cypress/base:12
         environment:
           TERM: xterm
-    working_directory: ~/agent-tracker
+    working_directory: ~/agent-tracker2022
 
 commands:
   restore_yarn_install:
@@ -25,6 +25,8 @@ commands:
 
 orbs:
   node: circleci/node@3.0.0
+  heroku: circleci/heroku@1.2.6
+
 
 version: 2.1
 jobs:
@@ -55,12 +57,20 @@ jobs:
       - checkout
       - restore_yarn_install
       - run:
-          name: Build agent-tracker
+          name: Build agent-tracker2022
           command: yarn build
       - save_cache:
-          key: agent-tracker
+          key: agent-tracker2022
           paths:
             - ./build
+  heroku_deploy:
+    working_directory: ~/agent-tracker2022
+    executor: cypress
+    steps:
+      - checkout
+      - heroku/install
+      - heroku/deploy-via-git
+
 
 workflows:
   version: 2
@@ -74,3 +84,9 @@ workflows:
           name: build_agent_tracker
           requires:
             - checkout_code
+      - heroku_deploy:
+          requires:
+            - build_agent_tracker
+          filters:
+            branches:
+              only: master
