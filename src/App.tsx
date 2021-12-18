@@ -1,8 +1,11 @@
+import { BrowserRouter } from "react-router-dom";
+import { AppRouter } from './components/appRouter/AppRouter';
+
 function App() {
   return (
-    <div className="App">
-     Hello Agent tracker! made by misspillis
-    </div>
+    <BrowserRouter>
+      <AppRouter />
+    </BrowserRouter>
   );
 }
 
